@@ -1,0 +1,163 @@
+#title{
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  background-image: linear-gradient(#AED2FF,  #F3FFFE);
+  padding-left: 5px;
+  position: sticky;
+}
+
+#tableScroll{
+  height:80%;
+  overflow: auto;
+}
+
+
+#overViewTable{
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+label{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.editCell{
+  border-bottom-color: white;
+  width: 40px;
+}
+
+
+
+.headerCell, .mat-cell{
+  text-align: center;
+  align-items: center;
+  max-height: 48px;
+  min-width: 48px;
+}
+.headerCell{
+  border-top: none;
+}
+::ng-deep .mat-sort-header-container{
+  justify-content: center;
+}
+
+.headerCell:hover{
+  cursor: col-resize;
+}
+.headerCell:active{
+  border-right: 1px dotted black;
+  border-left: 1px dotted black;
+}
+
+#erfolgreich{
+  color: #270;
+  background-color: #DFF2BF;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
+}
+#fehlgeschlagen{
+  color: #D8000C;
+  background-color: #FFBABA;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: white;
+}
+
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+  padding-left: 3px;
+}
+
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
+  padding-right: 3px;
+}
+
+
+.mat-row:hover{
+  background-color: #F2F2F2;
+}
+
+mat-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666666;
+}
+
+.iconEdit{
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+}
+.iconEdit:hover{
+  background: rgba(212,213,212,0.6);
+}
+.iconEdit:active{
+  background: rgba(212,213,212,1.5);
+}
+
+#paginator {
+  display: flex;
+  justify-content: start;
+}
+
+.rowUnderTable{
+  display: flex;
+  align-items: center;
+  height: 7%;
+}
+.rowUnderTable:first-child{
+  border-bottom: 2px;
+  border-style: solid;
+}
+
+.lastRowHalf{
+  display: flex;
+  width: 50%;
+}
+.lastRowHalf:last-of-type{
+  justify-content: end;
+}
+
+
+.buttonLastRow{
+  width: 30%;
+  height: 40px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.buttonLastRow:hover{
+  background-color: lightgray;
+  color: #000;
+  box-shadow: inset 0px 4px 8px rgba(0,0,0,0.15),
+  inset 0px 4px 8px rgba(0,0,0,0.15),
+  inset 0px 8px 16px rgba(0,0,0,0.15);
+  transition: 0.2s;}
+.buttonLastRow:active{
+  background-color: gray;
+}
+
+#refresh:hover, ::ng-deep button:enabled:hover{
+  background: rgba(212,213,212,0.2);
+  border-radius: 20px;
+}
+#refresh:active, ::ng-deep button:enabled:active{
+  background: rgba(212,213,212,0.6);
+  border-radius: 20px;
+}
+
+
+
+

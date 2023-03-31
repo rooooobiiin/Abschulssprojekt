@@ -1,0 +1,162 @@
+<body>
+
+  <label id="title" >Freestyles / Tickets</label>
+
+  <div id="tableScroll">
+
+    <table id="overViewTable" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortColumns($event)">
+
+      <ng-container matColumnDef="ticketnummer">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="ticketnummer"
+            (mousedown)="startDragging($event)">
+          Ticket-Nummer
+        </th>
+        <td mat-cell *matCellDef="let ticket">{{ticket.ticketnummer}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="inventarnummer">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="inventarnummer"
+            (mousedown)="startDragging($event)">
+          Inventar-Nummer
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.inventarnummer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="macAdresse">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="macAdresse"
+            (mousedown)="startDragging($event)">
+          Mac-Adresse
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.macadresse}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hostname">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="hostname"
+            (mousedown)="startDragging($event)">
+          Hostname
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.hostname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="arbeitsplatztyp">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="arbeitsplatzTyp"
+            (mousedown)="startDragging($event)">
+          Arbeitsplatz-Typ
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.arbeitsplatztyp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ersteller">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="ersteller"
+            (mousedown)="startDragging($event)">
+          Ersteller
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.ersteller}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="anwender">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="anwender"
+            (mousedown)="startDragging($event)">
+          Anwender
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.anwender}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="erstelldatum">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="erstellDatum"
+            (mousedown)="startDragging($event)">
+          Datum der Erstellung
+        </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.erstelldatum}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="zustand">
+        <th mat-header-cell
+            class="headerCell"
+            *matHeaderCellDef
+            mat-sort-header="zustand"
+            (mousedown)="startDragging($event)">
+          Zustand
+        </th>
+        <td mat-cell   *matCellDef="let ticket">
+          <div id="{{ticket.zustand=='in Progress'?'progress': (ticket.zustand=='fehlgeschlagen'? 'fehlgeschlagen':'erfolgreich')}}" > {{ticket.zustand}} </div>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="bearbeiten">
+        <th mat-header-cell
+            class="editCell"
+            *matHeaderCellDef
+            mat-sort-header="bearbeiten"
+            (mousedown)="startDragging($event)">
+
+        </th>
+        <td mat-cell class="editCell" *matCellDef="let ticket"> <mat-icon class="iconEdit" (click)="editTicket(ticket)">edit</mat-icon> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="loeschen">
+        <th mat-header-cell
+            class="editCell"
+            *matHeaderCellDef
+            mat-sort-header="loeschen"
+            (mousedown)="startDragging($event)">
+
+        </th>
+        <td mat-cell class="editCell" *matCellDef="let ticket"> <mat-icon (click)="deleteTicket(ticket)" class="iconEdit">delete</mat-icon> </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columns; sticky:true" style="text-align: center"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;" style="height: 50px"></tr>
+    </table>
+  </div>
+
+
+<div class="rowUnderTable">
+  <mat-paginator [pageSizeOptions]="[20, 50, 100, tickets.length]"
+                 showFirstLastButtons
+                 [pageSize]="tickets.length"
+  >
+  </mat-paginator>
+
+    <mat-icon class="iconEdit" id="refresh" matTooltip="Refresh" (click)="refreshTickets()">refresh</mat-icon>
+</div>
+
+<div class="rowUnderTable">
+  <div class="lastRowHalf">
+    <button class="buttonLastRow">Zur Paket Übersicht</button>
+  </div>
+  <div class="lastRowHalf">
+    <button class="buttonLastRow" (click)="createSSPIN()">SSP/IN erstellen</button>
+    <button class="buttonLastRow" [routerLink]="['/createfreestyle']" (click)="navigateToCreateFreestyle()">Freestyle erstellen</button>
+  </div>
+</div>
+
+
+</body>

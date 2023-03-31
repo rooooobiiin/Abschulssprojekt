@@ -1,0 +1,327 @@
+
+
+#page{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 10px;
+  height: 100%;
+  min-width: 1000px;
+}
+
+//EDIT-AUFTRAG (OBERES DIV)
+
+#upperDiv{
+  width: 100%;
+  height: 40%;
+  border-radius: 20px;
+  margin-bottom: 1%;
+  min-height: 240px;
+  border: 2px dotted rgb(201,201,201);
+
+}
+
+#editAuftrag{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+}
+
+#leftSide{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 40%;
+  height: 100%;
+  padding-left: 2%;
+}
+
+#verticalLine{
+  height: 95%;
+  margin-left: 3%;
+  margin-right: 3%;
+  border-left: 3px dotted rgb(201,201,201);
+}
+
+#rightSide {
+  display: flex;
+  align-items: start;
+  width: 56%;
+  height: 100%;
+}
+
+.formFieldInput{
+  width: 50%;
+  height: 15%;
+}
+.formFieldAutocomplete{
+  width: 100%;
+  height: 15%;
+}
+
+.infoHalf{
+  display: flex;
+  flex-direction: column;
+}
+#infoLeft{
+  width: 65%;
+}
+#infoRight{
+  width: 35%;
+}
+
+.ticketInfoField{
+  width: 90%;
+  white-space: pre-wrap;
+  color: black;
+}
+
+.disabledInputField{
+  color: black;
+}
+
+#test{
+  color: black;
+}
+
+
+
+
+.test{
+  height: 30px;
+}
+
+
+
+
+
+
+
+
+
+#labelNameNoEdit{
+  height: 20%;
+  padding-left: 10.5px;
+  padding-bottom: 35px;
+  padding-top: 17px;
+}
+#labelName{
+  height: 20%;
+  padding-left: 10.5px;
+  padding-bottom: 25px;
+  padding-top: 9px;
+}
+
+
+
+
+
+
+
+
+::ng-deep .mat-form-field-suffix {
+  width: 0;
+}
+
+
+#suffix{
+  height: 25px;
+  width: 25px;
+  color: rgb(148, 148, 148);
+}
+#suffix:hover{
+  color: black;
+  cursor: pointer;
+}
+#suffix:active{
+  color: gray;
+}
+
+
+
+
+
+
+//LISTEN (UNTERES DIV)
+
+#downDiv{
+  width: 100%;
+  height: 45%;
+  border-radius: 20px;
+  display: flex;
+  border: 2px dotted rgb(201,201,201);
+}
+
+.softwaretable{
+  height: 100%;
+  width: 20%;
+  padding-left: 1%;
+}
+
+.lableTitle{
+  width: 95%;
+  height: 10%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-image: linear-gradient(#AED2FF,  #F3FFFE);
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.tableScroll{
+  overflow: auto;
+  height: 90%;
+  width: 100%;
+}
+
+#switchButtonDiv{
+  width: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(148, 148, 148);
+}
+
+#setup{
+  width: 33%;
+  padding-left: 1%;
+}
+
+table {
+  width: 100%;
+}
+
+mat-table{
+  table-layout: fixed;
+}
+
+.swapSide{
+  transform: scale(1.6);
+  margin: 12px;
+}
+.swapSide:hover{
+  background: rgba(212,213,212,0.2);
+  border-radius: 20px;
+}
+.swapSide:active{
+  background: rgba(212,213,212,0.6);
+  border-radius: 20px;
+}
+
+#setupButtonDiv{
+  display: flex;
+  height: 12%;
+  margin-bottom: 1%;
+}
+
+.setupButton{
+  width: 50%;
+  height: 100%;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: rgb(215,233,253);
+}
+.setupButton:hover{
+  background-color: lightgray;
+  color: #000;
+  box-shadow: inset 0px 4px 8px rgba(0,0,0,0.15),
+  inset 0px 4px 8px rgba(0,0,0,0.15),
+  inset 0px 8px 16px rgba(0,0,0,0.15);
+  transition: 0.2s;}
+.setupButton:active{
+background-color: gray;
+}
+
+
+
+#logTable{
+  width: 100px;
+  height: 100px;
+}
+
+
+
+.headerCell, .mat-cell{
+  text-align: center;
+}
+::ng-deep .mat-sort-header-container{
+  justify-content: center;
+}
+
+.headerCell:hover{
+  cursor: col-resize;
+}
+.headerCell:active{
+  border-right: 1px dotted black;
+  border-left: 1px dotted black;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: white;
+}
+
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+  padding-left: 3px;
+}
+
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
+  padding-right: 3px;
+}
+
+.mat-row:hover{
+  background-color: #F2F2F2;
+}
+
+
+#log{
+  border: 1px solid black;
+  height: 85%;
+}
+
+//TOOLBAR
+
+#buttonRow{
+  display: flex;
+  justify-content: end;
+  height: 4%;
+}
+
+
+
+mat-toolbar {
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  height: 30px;
+  border-radius: 20px;
+  justify-content: end;
+  opacity: 0.3;
+}
+mat-toolbar:hover{
+  opacity: 1;
+}
+
+.toolbarButton{
+  border-radius: 10px;
+  border: none;
+}
+.toolbarButton:hover{
+  color: #000;
+  background-color: #c0c0c0;
+  box-shadow: inset 0px 2px 4px rgba(0,0,0,0.15),
+  inset 0px 4px 8px rgba(0,0,0,0.15),
+  inset 0px 8px 16px rgba(0,0,0,0.15);
+  transition: 0.2s;
+  transform: translateY(2px);
+}
+.toolbarButton:active{
+  background-color: #edebeb;
+}
+
+
+

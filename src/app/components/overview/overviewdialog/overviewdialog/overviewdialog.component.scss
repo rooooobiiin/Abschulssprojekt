@@ -1,0 +1,52 @@
+
+
+.mat-dialog-container{
+  background-color: red;
+}
+
+hr{
+  border: none;
+  border-top: 2px lightgray dashed;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+}
+
+h2{
+  color: rgb(155,155,155);
+  font-size: 15px;
+  line-height: 120%;
+  margin: 0;
+}
+
+#buttonRow{
+  display: flex;
+  justify-content: end;
+
+}
+
+.toolbarButton{
+  border-radius: 20px;
+  border: none;
+  height: 35px;
+  width: 80px;
+  margin: 10px;
+}
+.toolbarButton:hover{
+  color: #000;
+  background-color: #c0c0c0;
+  box-shadow: inset 0px 2px 4px rgba(0,0,0,0.15),
+  inset 0px 4px 8px rgba(0,0,0,0.15),
+  inset 0px 8px 16px rgba(0,0,0,0.15);
+  transition: 0.2s;
+  transform: translateY(2px);
+}
+.toolbarButton:active{
+  background-color: #edebeb;
+}
+

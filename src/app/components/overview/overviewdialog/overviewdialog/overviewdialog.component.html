@@ -1,0 +1,15 @@
+  <div *ngIf="data.reason=='create'">
+    Create Fenster
+  </div>
+
+  <div *ngIf="data.reason=='delete'">
+    <h1>Ticket löschen</h1>
+    <hr>
+    <h2>Sind Sie sich sicher, dass das Ticket dauerhaft gelöscht werden soll?</h2>
+    <hr>
+    <div id="buttonRow">
+      <button class="toolbarButton" (click)="closeDialog()">Abbrechen</button>
+      <button class="toolbarButton" (click)="deleteTicket()">Löschen</button>
+    </div>
+  </div>
+

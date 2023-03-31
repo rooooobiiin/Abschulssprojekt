@@ -1,0 +1,280 @@
+<body>
+<div id="page">
+  <div id="upperDiv">
+    <label class="lableTitle">Freestyle-Auftrag bearbeiten</label>
+    <div id="editAuftrag">
+
+      <div id="leftSide">
+        <mat-form-field class="formFieldInput">
+          <mat-label>Inventar Nummer</mat-label>
+          <input matInput [disabled]="!inputEditable" (blur)="test()">
+        </mat-form-field>
+
+        <mat-form-field class="formFieldInput">
+          <mat-label>MAC-Adresse</mat-label>
+          <input matInput [disabled]="!inputEditable">
+        </mat-form-field>
+
+        <mat-form-field class="formFieldInput">
+          <mat-label>Hostname</mat-label>
+          <input matInput [disabled]="!inputEditable">
+          <mat-icon *ngIf="inputEditable" matSuffix id="suffix" (click)="generateHostname()" matTooltip="Hostname generieren">create</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="formFieldInput">
+          <mat-label>User-ID</mat-label>
+          <input matInput [disabled]="!inputEditable" (blur)="setNamenslabel()">
+          <label matSuffix id="labelName" >{{namensLabel}}</label>
+
+        </mat-form-field>
+
+        <mat-form-field class="formFieldAutocomplete" *ngIf="inputEditable; else arbeitsplatzInput">
+          <mat-label>Arbeitsplatztyp</mat-label>
+          <input matInput
+                 [formControl]="controlArbeitsplatz"
+                 [matAutocomplete]="arbeitsplatz">
+          <mat-checkbox id="arbeitsplatztypcheckbox" matSuffix matTooltip="Alle anzeigen" color="primary"></mat-checkbox>
+          <mat-autocomplete #arbeitsplatz="matAutocomplete">
+            <mat-option *ngFor="let option of gefilterteOptionenArbeitsplatz | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <ng-template #arbeitsplatzInput>
+          <mat-form-field  class="formFieldAutocomplete">
+            <mat-label>Arbeitsplatztyp</mat-label>
+            <input matInput class="" [disabled]="!inputEditable">
+          </mat-form-field>
+        </ng-template>
+
+
+        <mat-form-field  class="formFieldAutocomplete"  *ngIf="inputEditable; else bootserverInput">
+          <mat-label>Bootserver</mat-label>
+          <input matInput
+                 [formControl]="controlBootserver"
+                 [matAutocomplete]="bootServer">
+          <mat-autocomplete #bootServer="matAutocomplete">
+            <mat-option *ngFor="let option of gefilterteOptionenBootserver | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <ng-template #bootserverInput>
+          <mat-form-field class="formFieldAutocomplete">
+            <mat-label>Bootserver</mat-label>
+            <input matInput [disabled]="!inputEditable">
+          </mat-form-field>
+        </ng-template>
+      </div>
+
+        <div id="verticalLine" *ngIf="ticket && ticket.ticketnummer !=='freestyle'"></div>
+
+
+        <div id="rightSide" *ngIf="ticket && ticket.ticketnummer !=='freestyle'">
+          <div class="infoHalf" id="infoLeft">
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Auftraggeber</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" (blur)="test()" [value]="mockdatenInput">
+            </mat-form-field>
+
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Benutzer (Serviceempfänger)</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" (blur)="test()" [value]="mockdatenInput">
+            </mat-form-field>
+
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Standort / Etage / Raum</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" (blur)="test()" [value]="'MockDaten'" >
+            </mat-form-field>
+
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Kostenstelle / Abteilung / E-Mail / Tel</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" (blur)="test()" [value]="'MockDaten'">
+            </mat-form-field>
+
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Hardware-Gerätetyp</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" (blur)="test()" [value]="'MockDaten'">
+            </mat-form-field>
+          </div>
+
+
+          <div class="infoHalf" id="infoRight">
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Hardware-Benutzerberechtigung</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" [value]="'Mock Data'">
+            </mat-form-field>
+
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Gewünschter Umsetzungstermin</mat-label>
+              <input class="disabledInputField" matInput [disabled]="true" [value]="'Mock Data'">
+            </mat-form-field>
+
+            <mat-form-field class="ticketInfoField">
+              <mat-label>Hinweise</mat-label>
+              <textarea class="disabledInputField" matInput [disabled]="true" [cdkTextareaAutosize]>Mock Data</textarea>
+            </mat-form-field>
+          </div>
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+  <div id="downDiv">
+
+    <div class="softwaretable">
+      <label class="lableTitle"> Standardsoftware</label>
+      <div class="tableScroll">
+        <table #selectBasicTable class="selectionTable"  mat-table [dataSource]="dataBasic" matSort (matSortChange)="sortColumns($event)">
+          <ng-container matColumnDef="id" >
+            <th mat-header-cell class="headerCell" *matHeaderCellDef mat-sort-header="id" (mousedown)="startDragging($event)">ID</th>
+            <td mat-cell *matCellDef="let id">{{id.id}}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef mat-sort-header="name" (mousedown)="startDragging($event)">
+              Softwarename
+            </th>
+            <td mat-cell *matCellDef="let name"> {{name.name}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row); row.rowClicked= !row.rowClicked" [style.background-color]="row.rowClicked?'lightgray':''" ></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="softwaretable">
+      <label class="lableTitle">Individualsoftware</label>
+      <div class="tableScroll">
+        <table #selectionIndividualTable class="selectionTable" mat-table [dataSource]="dataIndividual" matSort (matSortChange)="sortColumns($event)">
+          <ng-container matColumnDef="id" >
+            <th mat-header-cell class="headerCell" *matHeaderCellDef mat-sort-header="id" (mousedown)="startDragging($event)">ID</th>
+            <td mat-cell *matCellDef="let id">{{id.id}}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef mat-sort-header="name" (mousedown)="startDragging($event)">
+              Softwarename
+            </th>
+            <td mat-cell *matCellDef="let name"> {{name.name}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row); row.rowClicked= !row.rowClicked" [style.background-color]="row.rowClicked?'lightgray':''" ></tr>
+        </table>
+      </div>
+    </div>
+
+
+    <div id="switchButtonDiv">
+      <mat-icon class="swapSide" (click)="moveToRight()">chevron_right</mat-icon>
+      <br>
+      <mat-icon class="swapSide" (click)="moveToLeft()">chevron_left</mat-icon>
+      <br>
+      <mat-icon class="swapSide" (click)="moveAllToLeft()">keyboard_double_arrow_left</mat-icon>
+    </div>
+
+    <div class="softwaretable">
+      <label class="lableTitle">ausgewählt</label>
+      <div class="tableScroll">
+        <table #selectedTable class="selectionTable" mat-table [dataSource]="dataChosen" matSort (matSortChange)="sortColumns($event)">
+          <ng-container matColumnDef="id" >
+            <th mat-header-cell class="headerCell" *matHeaderCellDef mat-sort-header="id" (mousedown)="startDragging($event)">ID</th>
+            <td mat-cell *matCellDef="let id">{{id.id}}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef mat-sort-header="name" (mousedown)="startDragging($event)">
+              Softwarename
+            </th>
+            <td mat-cell *matCellDef="let name"> {{name.name}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="clickRow(row); row.rowClicked= !row.rowClicked" [style.background-color]="row.rowClicked?'lightgray':''"></tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="setup">
+      <div id="setupButtonDiv">
+        <button class="setupButton">Speichern & Setup starten</button>
+        <button class="setupButton">Setup abbrechen</button>
+      </div>
+
+      <div class="tableTitleDiv" style="height: 87%">
+        <div class="lableTitle">Log</div>
+        <div class="tableScroll">
+          <table #logTable mat-table [dataSource]="dataLogs" matSort (matSortChange)="sortColumns($event)"
+                 class="logTable">
+            <ng-container matColumnDef="kategorie">
+              <th mat-header-cell
+                  class="headerCell"
+                  *matHeaderCellDef
+                  (mousedown)="startDragging($event)">
+                Kategorie
+              </th>
+              <td mat-cell *matCellDef="let logMessage"> <mat-icon (click)="openDialog()">info</mat-icon> </td>
+            </ng-container>
+            <ng-container matColumnDef="datum">
+              <th mat-header-cell
+                  class="headerCell"
+                  *matHeaderCellDef
+                  mat-sort-header="datum"
+                  (mousedown)="startDragging($event)">
+                Datum
+              </th>
+              <td mat-cell *matCellDef="let logMessage"> {{logMessage.datum}} </td>
+            </ng-container>
+            <ng-container matColumnDef="benutzer">
+              <th mat-header-cell
+                  class="headerCell"
+                  *matHeaderCellDef
+                  mat-sort-header="benutzer"
+                  (mousedown)="startDragging($event)">
+                Benutzer
+              </th>
+              <td mat-cell *matCellDef="let logMessage"> {{logMessage.benutzer}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nachricht">
+              <th mat-header-cell
+                  class="headerCell"
+                  *matHeaderCellDef
+                  mat-sort-header="nachricht"
+                  (mousedown)="startDragging($event)">
+                Nachricht
+              </th>
+              <td mat-cell *matCellDef="let logMessage"> {{logMessage.nachricht}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="logColumns; sticky:true" style="text-align: center"></tr>
+            <tr mat-row *matRowDef="let row; columns: logColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div id="buttonRow">
+    <button class="toolbarButton">Checkliste</button>
+    <button class="toolbarButton">Übergabeinformationen</button>
+    <button class="toolbarButton">Übergabeprotokoll (Excel)</button>
+    <button class="toolbarButton">Speichern</button>
+    <button class="toolbarButton">Abbrechen</button>
+  </div>
+
+</div>
+</body>
+
